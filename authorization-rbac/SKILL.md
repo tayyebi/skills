@@ -24,9 +24,9 @@ As soon as you have more than "logged in vs. not." The moment you write `if (use
    - returns an `audit()` helper bound to the actor.
 
 ```
-const { user, audit } = await requireAuth(req, { permission: 'candidates.write' })
-// ... do the work ...
-await audit('candidate.updated', { id })
+{ user, audit } = requireAuth(request, permission: "candidates.write")
+... do the work ...
+audit("candidate.updated", { id })
 ```
 
 ## Design decisions
