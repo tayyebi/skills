@@ -1,36 +1,71 @@
 # Software Development Skills
 
-A library of reusable, framework-agnostic **skills** for the cross-cutting infrastructure that almost every non-trivial multi-user / SaaS application ends up needing. Each skill captures a battle-tested pattern — the data model, the key decisions, and the pitfalls — so it can be lifted into a new project instead of re-derived.
+A library of reusable, framework-, language-, and project-agnostic **skills** — for the cross-cutting infrastructure almost every non-trivial application needs, for testing/QA methodology, and for general engineering practice. Each skill captures a battle-tested pattern — the core method, the key decisions, and the pitfalls — so it can be lifted into a new project instead of re-derived. Code examples are pseudocode or generic notation, not tied to one language or framework, unless the skill's subject *is* a specific surface syntax (e.g. CSS logical properties for RTL layout).
 
-These were distilled from production systems — a multi-tenant SaaS application (Next.js + PostgreSQL + Drizzle) and an active-active, masterless, multi-region status platform — but the patterns are deliberately written to be portable across stacks.
+## Repository layout
+
+Every skill lives once, under `.agents/skills/<name>/SKILL.md` — that's the canonical copy. Everything else is a thin adapter:
+
+```
+.agents/skills/<name>/SKILL.md   ← canonical source, edit here
+.claude/skills/<name>            → symlink to .agents/skills/<name>
+.codex/skills/<name>             → symlink to .agents/skills/<name>
+.opencode/skills/<name>          → symlink to .agents/skills/<name>
+```
+
+`.agents/skills/` is itself a real, emerging cross-tool convention: Google Antigravity reads it natively as its project-scope skills directory, OpenAI's Codex CLI and OpenCode both auto-load it as one of their supported skill locations. So dropping this repo into a project (or symlinking it in) already works for those three agents with zero extra setup. Claude Code specifically looks for `.claude/skills/`, so that directory holds one symlink per skill pointing back into `.agents/skills/` — same content, no duplication, no drift. `.codex/skills/` and `.opencode/skills/` are populated the same way for explicitness, even though both tools also pick up `.agents/skills/` directly.
+
+To add a new skill: create `.agents/skills/<name>/SKILL.md`, then symlink it into the three adapter directories (`ln -s ../../.agents/skills/<name> .claude/skills/<name>`, and the same for `.codex/skills` and `.opencode/skills`).
 
 ## How to use
 
-Each folder contains a `SKILL.md` with YAML frontmatter (`name`, `description`) and a body describing when to use it, the core pattern, concrete implementation notes, and gotchas. They follow the Claude Code / Agent Skills format, so they can be dropped into `.claude/skills/` (or any agent skill directory) as-is — or just read as engineering reference docs.
+Each `SKILL.md` has YAML frontmatter (`name`, `description`) and a body describing when to use it, the core pattern, concrete implementation notes, and pitfalls — read it as an engineering reference doc, or point an agent at this repo (see Repository layout) so it's picked up automatically.
 
 ## Index
+
+### General engineering practices
+
+Language-independent principles — apply the *idea*, translate the pseudocode into whatever stack you're in.
+
+| Skill | What it covers |
+|-------|----------------|
+| [clean-code-fundamentals](.agents/skills/clean-code-fundamentals/SKILL.md) | Naming, function shape, comments, DRY, guard clauses, error handling |
+| [solid-principles](.agents/skills/solid-principles/SKILL.md) | The five SOLID principles, with pseudocode and when to pragmatically break them |
+| [object-oriented-design-principles](.agents/skills/object-oriented-design-principles/SKILL.md) | Encapsulation, composition over inheritance, coupling/cohesion |
+| [design-patterns-catalog](.agents/skills/design-patterns-catalog/SKILL.md) | GoF-style patterns + when a pattern is over-engineering |
+| [clean-architecture-layering](.agents/skills/clean-architecture-layering/SKILL.md) | Dependency rule, domain/application/adapter layers, ports |
+| [static-typing-discipline](.agents/skills/static-typing-discipline/SKILL.md) | Strict typing, static analysis in CI, null-safety, immutability |
+| [database-schema-design](.agents/skills/database-schema-design/SKILL.md) | Keys, naming, migrations, indexing, N+1 avoidance |
+| [api-design](.agents/skills/api-design/SKILL.md) | Resource naming, HTTP verbs, status codes, response/error envelope |
+| [performance-optimization](.agents/skills/performance-optimization/SKILL.md) | Profile-first discipline, caching layers, batching, lazy loading |
+| [observability-logging-monitoring](.agents/skills/observability-logging-monitoring/SKILL.md) | Log levels, metrics, correlation IDs, alert tiers, dashboards |
+| [secure-coding-practices](.agents/skills/secure-coding-practices/SKILL.md) | Build-time OWASP-adjacent prevention: injection, XSS, secrets, deserialization |
+| [git-workflow-conventions](.agents/skills/git-workflow-conventions/SKILL.md) | Commit conventions, branch naming, PR discipline, rebase vs. merge |
+| [ci-cd-pipeline-discipline](.agents/skills/ci-cd-pipeline-discipline/SKILL.md) | Staged gates, required checks, what makes a pipeline trustworthy |
+| [responsive-mobile-first-design](.agents/skills/responsive-mobile-first-design/SKILL.md) | Mobile-first CSS authoring, breakpoints, touch targets |
+| [rtl-bidi-layout](.agents/skills/rtl-bidi-layout/SKILL.md) | Logical CSS properties, icon mirroring, bidi text handling |
 
 ### Application & SaaS building blocks
 
 | Skill | What it covers |
 |-------|----------------|
-| [authentication-sessions](authentication-sessions/SKILL.md) | Signed-cookie sessions, SSO providers, 2FA |
-| [authorization-rbac](authorization-rbac/SKILL.md) | Roles + fine-grained permission catalog |
-| [api-tokens](api-tokens/SKILL.md) | Hashed bearer tokens for machine access |
-| [multi-tenancy-rls](multi-tenancy-rls/SKILL.md) | Tenant isolation via Postgres Row-Level Security |
-| [multi-channel-notifications](multi-channel-notifications/SKILL.md) | One dispatch → in-app + email + SMS + chat, with preferences |
-| [structured-logging-audit](structured-logging-audit/SKILL.md) | Structured logs + who-did-what audit trail |
-| [rate-limiting-abuse-prevention](rate-limiting-abuse-prevention/SKILL.md) | Sliding-window IP bans + CAPTCHA on public endpoints |
-| [configuration-feature-flags](configuration-feature-flags/SKILL.md) | Two-tier (install + per-tenant) settings & toggles |
-| [versioned-http-api](versioned-http-api/SKILL.md) | Versioned REST surface + OpenAPI/Swagger |
-| [background-jobs-scheduling](background-jobs-scheduling/SKILL.md) | Cron, async job queue, trigger→action automation |
-| [content-addressed-file-storage](content-addressed-file-storage/SKILL.md) | Blob store with SHA-256 dedup + ref-counting |
-| [outbound-webhooks](outbound-webhooks/SKILL.md) | HMAC-signed event delivery with retries & log |
-| [data-import-export](data-import-export/SKILL.md) | CSV/tabular import & export |
-| [search-filtering-pagination](search-filtering-pagination/SKILL.md) | Trigram search, filtering, stable pagination |
-| [internationalization](internationalization/SKILL.md) | i18n/l10n, RTL, locale-aware digits |
-| [backup-restore](backup-restore/SKILL.md) | Scheduled backups with offsite copies + restore |
-| [share-links-tracking](share-links-tracking/SKILL.md) | Expiring signed share links + open tracking |
+| [authentication-sessions](.agents/skills/authentication-sessions/SKILL.md) | Signed-cookie sessions, SSO providers, 2FA |
+| [authorization-rbac](.agents/skills/authorization-rbac/SKILL.md) | Roles + fine-grained permission catalog |
+| [api-tokens](.agents/skills/api-tokens/SKILL.md) | Hashed bearer tokens for machine access |
+| [multi-tenancy-rls](.agents/skills/multi-tenancy-rls/SKILL.md) | Tenant isolation via Postgres Row-Level Security |
+| [multi-channel-notifications](.agents/skills/multi-channel-notifications/SKILL.md) | One dispatch → in-app + email + SMS + chat, with preferences |
+| [structured-logging-audit](.agents/skills/structured-logging-audit/SKILL.md) | Structured logs + who-did-what audit trail |
+| [rate-limiting-abuse-prevention](.agents/skills/rate-limiting-abuse-prevention/SKILL.md) | Sliding-window IP bans + CAPTCHA on public endpoints |
+| [configuration-feature-flags](.agents/skills/configuration-feature-flags/SKILL.md) | Two-tier (install + per-tenant) settings & toggles |
+| [versioned-http-api](.agents/skills/versioned-http-api/SKILL.md) | Versioned REST surface + OpenAPI/Swagger |
+| [background-jobs-scheduling](.agents/skills/background-jobs-scheduling/SKILL.md) | Cron, async job queue, trigger→action automation |
+| [content-addressed-file-storage](.agents/skills/content-addressed-file-storage/SKILL.md) | Blob store with SHA-256 dedup + ref-counting |
+| [outbound-webhooks](.agents/skills/outbound-webhooks/SKILL.md) | HMAC-signed event delivery with retries & log |
+| [data-import-export](.agents/skills/data-import-export/SKILL.md) | CSV/tabular import & export |
+| [search-filtering-pagination](.agents/skills/search-filtering-pagination/SKILL.md) | Trigram search, filtering, stable pagination |
+| [internationalization](.agents/skills/internationalization/SKILL.md) | i18n/l10n, RTL, locale-aware digits |
+| [backup-restore](.agents/skills/backup-restore/SKILL.md) | Scheduled backups with offsite copies + restore |
+| [share-links-tracking](.agents/skills/share-links-tracking/SKILL.md) | Expiring signed share links + open tracking |
 
 ### Distributed systems & data synchronization
 
@@ -38,12 +73,12 @@ Patterns for running the same app on N ≥ 3 writable nodes that converge withou
 
 | Skill | What it covers |
 |-------|----------------|
-| [hybrid-logical-clocks](hybrid-logical-clocks/SKILL.md) | Comparable, causal version stamps across drifting clocks (HLC) |
-| [masterless-active-active-replication](masterless-active-active-replication/SKILL.md) | N writable nodes converging via a gossiped LWW mutation log |
-| [change-data-capture-triggers](change-data-capture-triggers/SKILL.md) | DB triggers that log every write (replication / outbox / audit) |
-| [cluster-membership-gossip](cluster-membership-gossip/SKILL.md) | Seed bootstrap, peer health, join/leave, shared-secret peer auth |
-| [leader-election-via-shared-config](leader-election-via-shared-config/SKILL.md) | One-of-N singleton work via a replicated config value, no consensus |
-| [idempotency-keys](idempotency-keys/SKILL.md) | Dedupe write retries across replicas with a cached-response table |
+| [hybrid-logical-clocks](.agents/skills/hybrid-logical-clocks/SKILL.md) | Comparable, causal version stamps across drifting clocks (HLC) |
+| [masterless-active-active-replication](.agents/skills/masterless-active-active-replication/SKILL.md) | N writable nodes converging via a gossiped LWW mutation log |
+| [change-data-capture-triggers](.agents/skills/change-data-capture-triggers/SKILL.md) | DB triggers that log every write (replication / outbox / audit) |
+| [cluster-membership-gossip](.agents/skills/cluster-membership-gossip/SKILL.md) | Seed bootstrap, peer health, join/leave, shared-secret peer auth |
+| [leader-election-via-shared-config](.agents/skills/leader-election-via-shared-config/SKILL.md) | One-of-N singleton work via a replicated config value, no consensus |
+| [idempotency-keys](.agents/skills/idempotency-keys/SKILL.md) | Dedupe write retries across replicas with a cached-response table |
 
 ### Deployment & fleet operations
 
@@ -51,10 +86,47 @@ Turning bare hosts into a running fleet — distilled from an SSH-driven, multi-
 
 | Skill | What it covers |
 |-------|----------------|
-| [host-auto-provisioning](host-auto-provisioning/SKILL.md) | Idempotently ready a bare SSH host: runtime, dirs, mount self-heal, preflight |
-| [build-once-deploy-everywhere](build-once-deploy-everywhere/SKILL.md) | Build one SHA-tagged image, pull-and-run it identically on every host |
-| [rolling-fleet-deploy](rolling-fleet-deploy/SKILL.md) | Staggered rollout across a host matrix + post-deploy convergence gate |
-| [zero-config-secret-bootstrap](zero-config-secret-bootstrap/SKILL.md) | A service self-mints its token on first boot and shares it via a volume |
+| [host-auto-provisioning](.agents/skills/host-auto-provisioning/SKILL.md) | Idempotently ready a bare SSH host: runtime, dirs, mount self-heal, preflight |
+| [build-once-deploy-everywhere](.agents/skills/build-once-deploy-everywhere/SKILL.md) | Build one SHA-tagged image, pull-and-run it identically on every host |
+| [rolling-fleet-deploy](.agents/skills/rolling-fleet-deploy/SKILL.md) | Staggered rollout across a host matrix + post-deploy convergence gate |
+| [zero-config-secret-bootstrap](.agents/skills/zero-config-secret-bootstrap/SKILL.md) | A service self-mints its token on first boot and shares it via a volume |
+
+### Testing & QA
+
+Black-box, framework-agnostic testing methodology — how to verify a system from the outside, not how to write unit tests against its source.
+
+| Skill | What it covers |
+|-------|----------------|
+| [testing-recon](.agents/skills/testing-recon/SKILL.md) | Attack-surface mapping and scoping at the start of a test engagement |
+| [testing-smoke](.agents/skills/testing-smoke/SKILL.md) | Tiered go/no-go deployment sanity check |
+| [testing-smoke-curl](.agents/skills/testing-smoke-curl/SKILL.md) | Zero-dependency curl+jq smoke-test playbook |
+| [testing-functional](.agents/skills/testing-functional/SKILL.md) | Scripted regression across core user journeys |
+| [testing-exploratory](.agents/skills/testing-exploratory/SKILL.md) | Session-based exploratory testing (SBET): charters, tours, HICCUPPS |
+| [testing-api](.agents/skills/testing-api/SKILL.md) | Black-box HTTP/REST testing: auth, CSRF, status codes, pagination |
+| [testing-contract](.agents/skills/testing-contract/SKILL.md) | Diffing a live API against its documented spec, undocumented-route discovery |
+| [testing-data-fuzz](.agents/skills/testing-data-fuzz/SKILL.md) | Input-space fuzzing: boundaries, Unicode, type confusion |
+| [testing-authz-matrix](.agents/skills/testing-authz-matrix/SKILL.md) | Systematic role×endpoint RBAC coverage sweep |
+| [testing-automation](.agents/skills/testing-automation/SKILL.md) | Building runnable black-box test harnesses with no source access |
+| [testing-security](.agents/skills/testing-security/SKILL.md) | Breadth-first OWASP penetration-testing sweep |
+| [testing-pentest-authz](.agents/skills/testing-pentest-authz/SKILL.md) | Deep privilege-escalation and IDOR probing |
+| [testing-pentest-injection](.agents/skills/testing-pentest-injection/SKILL.md) | Deep SQL/OS-command/SSTI/NoSQL injection probing |
+| [testing-compliance](.agents/skills/testing-compliance/SKILL.md) | Privacy/GDPR, data retention, audit-trail testing |
+| [testing-chaos](.agents/skills/testing-chaos/SKILL.md) | Failure-injection and resilience testing |
+| [testing-lifecycle](.agents/skills/testing-lifecycle/SKILL.md) | State-machine testing for a provisioned/stateful resource |
+| [testing-ssh](.agents/skills/testing-ssh/SKILL.md) | SSH access correctness: key injection, auth, host-key consistency |
+| [testing-vnc](.agents/skills/testing-vnc/SKILL.md) | Remote console/VNC session correctness |
+| [testing-network](.agents/skills/testing-network/SKILL.md) | Reachability, DNS, port state vs. billing/control-plane state |
+| [testing-platform-coverage](.agents/skills/testing-platform-coverage/SKILL.md) | Catalog/variant-matrix coverage (images, tiers, device profiles) |
+| [testing-performance](.agents/skills/testing-performance/SKILL.md) | Response times, throughput, race conditions, timing attacks |
+| [testing-benchmark](.agents/skills/testing-benchmark/SKILL.md) | In-resource micro-benchmarking vs. advertised specs |
+| [testing-benchmark-compare](.agents/skills/testing-benchmark-compare/SKILL.md) | Cross-tier benchmark comparison, catching oversold plans |
+| [testing-region-benchmark](.agents/skills/testing-region-benchmark/SKILL.md) | Cross-location performance comparison |
+| [testing-region-coverage](.agents/skills/testing-region-coverage/SKILL.md) | Per-region availability matrix |
+| [testing-browser-ui](.agents/skills/testing-browser-ui/SKILL.md) | Live browser-driven interactive UI testing |
+| [testing-mobile](.agents/skills/testing-mobile/SKILL.md) | Responsive/mobile device-emulation testing |
+| [testing-accessibility](.agents/skills/testing-accessibility/SKILL.md) | WCAG-referenced a11y testing and remediation reporting |
+| [testing-billing](.agents/skills/testing-billing/SKILL.md) | Financial-correctness testing: ledger, invoices, refunds |
+| [testing-integration](.agents/skills/testing-integration/SKILL.md) | Third-party seams: payment gateways, email, SSO/SCIM, webhooks |
 
 ## License
 
