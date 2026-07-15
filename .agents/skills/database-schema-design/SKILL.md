@@ -36,7 +36,7 @@ Pick one convention and apply it everywhere — the value is in consistency, not
 ## Migrations
 
 - Every migration is reversible: write the down/rollback step at the same time as the up step, not as an afterthought once something breaks.
-- Never edit a migration that has already run in any shared environment (staging, production). Write a new migration — editing history that others have already applied causes their local state and the migration file to silently diverge.
+- Never edit a migration that has already run in any shared environment (staging, production). Write a new migration — editing history that others have already applied causes their local state and the migration file to silently diverge. Operational default: once a migration file is committed/pushed, **assume it has already run** (most runners apply on every deploy/startup), so never renumber or rewrite it — always add the next-numbered file. This holds even for "fixing a typo" or "it only just merged": the safe move is a new forward migration, not an in-place edit.
 - Preview the SQL a migration will generate before running it against production; don't trust the migration tool's abstraction blindly for anything touching a large table.
 - For zero-downtime deploys, a migration must be safe against the *currently running* code, not just the new code — see `ci-cd-pipeline-discipline` for the surrounding deploy sequencing. Concretely:
   - Adding a column: give it a default or make it nullable so in-flight writes from old code don't fail.
