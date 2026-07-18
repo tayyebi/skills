@@ -15,11 +15,39 @@ Every skill lives once, under `.agents/skills/<name>/SKILL.md` — that's the ca
 
 `.agents/skills/` is itself a real, emerging cross-tool convention: Google Antigravity reads it natively as its project-scope skills directory, OpenAI's Codex CLI and OpenCode both auto-load it as one of their supported skill locations. So dropping this repo into a project (or symlinking it in) already works for those three agents with zero extra setup. Claude Code specifically looks for `.claude/skills/`, so that directory holds one symlink per skill pointing back into `.agents/skills/` — same content, no duplication, no drift. `.codex/skills/` and `.opencode/skills/` are populated the same way for explicitness, even though both tools also pick up `.agents/skills/` directly.
 
-To add a new skill: create `.agents/skills/<name>/SKILL.md`, then symlink it into the three adapter directories (`ln -s ../../.agents/skills/<name> .claude/skills/<name>`, and the same for `.codex/skills` and `.opencode/skills`).
+## Working with skills
 
-## How to use
+### Reading a skill
 
-Each `SKILL.md` has YAML frontmatter (`name`, `description`) and a body describing when to use it, the core pattern, concrete implementation notes, and pitfalls — read it as an engineering reference doc, or point an agent at this repo (see Repository layout) so it's picked up automatically.
+Each `SKILL.md` has YAML frontmatter (`name`, `description`) and a body describing when to use it, the core pattern, concrete implementation notes, pitfalls, and a checklist. Read it as an engineering reference doc, or point an agent at this repo so it's picked up automatically.
+
+Open the canonical copy: `.agents/skills/<name>/SKILL.md`. The symlinks in `.claude/`, `.codex/`, and `.opencode/` all point back to it, so reading any path shows the same file.
+
+### Updating an existing skill
+
+Edit the canonical copy at `.agents/skills/<name>/SKILL.md`. The symlinks in the adapter directories follow automatically — no duplication, no drift, nothing to sync.
+
+Before updating, read the existing skill end-to-end. Match its voice, structure, and level of detail. If the change affects the skill's scope, remember to update the `description` in the YAML frontmatter (agents use it for skill routing) and the README index entry if the one-line summary is no longer accurate.
+
+### Adding a new skill
+
+1. **Write the skill.** Create `.agents/skills/<name>/SKILL.md` with YAML frontmatter:
+   ```yaml
+   ---
+   name: <kebab-case-name>
+   description: Use when <condition> — <one-line summary>.
+   ---
+   ```
+   Study an existing skill (e.g. `database-schema-design`) for the expected structure: when-to-use, core pattern, concrete guidance, pitfalls, and a checklist.
+
+2. **Symlink into adapter directories.** From the repo root:
+   ```
+   ln -s ../../.agents/skills/<name> .claude/skills/<name>
+   ln -s ../../.agents/skills/<name> .codex/skills/<name>
+   ln -s ../../.agents/skills/<name> .opencode/skills/<name>
+   ```
+
+3. **Add a row to the README index.** Find the right category table under `## Index` and add a row linking to the canonical path (`.agents/skills/<name>/SKILL.md`). Match the existing row format exactly — pipe-separated columns, relative link, one-line summary.
 
 ## Index
 
@@ -62,6 +90,7 @@ Language-independent principles — apply the *idea*, translate the pseudocode i
 | [content-addressed-file-storage](.agents/skills/content-addressed-file-storage/SKILL.md) | Blob store with SHA-256 dedup + ref-counting |
 | [outbound-webhooks](.agents/skills/outbound-webhooks/SKILL.md) | HMAC-signed event delivery with retries & log |
 | [data-import-export](.agents/skills/data-import-export/SKILL.md) | CSV/tabular import & export |
+| [mock-data](.agents/skills/mock-data/SKILL.md) | Seeding realistic fake data that mirrors the production schema |
 | [search-filtering-pagination](.agents/skills/search-filtering-pagination/SKILL.md) | Trigram search, filtering, stable pagination |
 | [internationalization](.agents/skills/internationalization/SKILL.md) | i18n/l10n, RTL, locale-aware digits |
 | [backup-restore](.agents/skills/backup-restore/SKILL.md) | Scheduled backups with offsite copies + restore |
