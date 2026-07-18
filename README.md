@@ -72,6 +72,7 @@ Language-independent principles — apply the *idea*, translate the pseudocode i
 | [ci-cd-pipeline-discipline](.agents/skills/ci-cd-pipeline-discipline/SKILL.md) | Staged gates, required checks, what makes a pipeline trustworthy |
 | [responsive-mobile-first-design](.agents/skills/responsive-mobile-first-design/SKILL.md) | Mobile-first CSS authoring, breakpoints, touch targets |
 | [rtl-bidi-layout](.agents/skills/rtl-bidi-layout/SKILL.md) | Logical CSS properties, icon mirroring, bidi text handling |
+| [user-journey-engineering](.agents/skills/user-journey-engineering/SKILL.md) | Goal-driven flow design: actor/goal mapping, friction analysis, journey anti-patterns |
 
 ### Application & SaaS building blocks
 
