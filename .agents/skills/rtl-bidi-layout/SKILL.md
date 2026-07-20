@@ -65,6 +65,7 @@ Numerals, phone numbers, URLs, code snippets, and embedded runs of LTR-language 
 
 - Isolate embedded runs of opposite-direction text (a Latin brand name inside an Arabic sentence, a mixed-script product title) with `unicode-bidi: isolate` (or `plaintext` for runs whose direction should be detected from their own content) so punctuation and word order don't get silently reordered around the boundary.
 - Default each input's direction to the type of content it expects, independent of the surrounding page direction — a phone/email/URL field stays LTR even embedded in an RTL form; a free-text field matches the page direction.
+- The same isolation problem exists **outside the browser**, wherever text is rasterized server-side (generated images, PDFs, charts). There is no CSS there: pin the base direction with the Unicode isolate characters `U+2067` … `U+2069`, and confirm the engine shapes the script at all — many do not. See `social-preview-cards`.
 
 ```
 input[data-content="phone"],
