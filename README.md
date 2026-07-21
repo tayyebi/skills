@@ -64,6 +64,8 @@ Language-independent principles — apply the *idea*, translate the pseudocode i
 | [clean-architecture-layering](.agents/skills/clean-architecture-layering/SKILL.md) | Dependency rule, domain/application/adapter layers, ports |
 | [static-typing-discipline](.agents/skills/static-typing-discipline/SKILL.md) | Strict typing, static analysis in CI, null-safety, immutability |
 | [database-schema-design](.agents/skills/database-schema-design/SKILL.md) | Keys, naming, migrations, indexing, N+1 avoidance |
+| [actor-attribution](.agents/skills/actor-attribution/SKILL.md) | created_by/updated_by (actor_id) columns, system-actor handling |
+| [append-only-entity-versioning](.agents/skills/append-only-entity-versioning/SKILL.md) | Full-row snapshots keyed off a shared revision sequence instead of UPDATE-in-place |
 | [api-design](.agents/skills/api-design/SKILL.md) | Resource naming, HTTP verbs, status codes, response/error envelope |
 | [performance-optimization](.agents/skills/performance-optimization/SKILL.md) | Profile-first discipline, caching layers, batching, lazy loading |
 | [observability-logging-monitoring](.agents/skills/observability-logging-monitoring/SKILL.md) | Log levels, metrics, correlation IDs, alert tiers, dashboards |
