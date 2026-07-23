@@ -85,6 +85,7 @@ Language-independent principles — apply the *idea*, translate the pseudocode i
 | [api-tokens](.agents/skills/api-tokens/SKILL.md) | Hashed bearer tokens for machine access |
 | [multi-tenancy-rls](.agents/skills/multi-tenancy-rls/SKILL.md) | Tenant isolation via Postgres Row-Level Security |
 | [multi-channel-notifications](.agents/skills/multi-channel-notifications/SKILL.md) | One dispatch → in-app + email + SMS + chat, with preferences |
+| [interactive-email](.agents/skills/interactive-email/SKILL.md) | Actionable email: ICS invites, Gmail JSON-LD cards, signed action links, RFC 8058 unsubscribe |
 | [structured-logging-audit](.agents/skills/structured-logging-audit/SKILL.md) | Structured logs + who-did-what audit trail |
 | [rate-limiting-abuse-prevention](.agents/skills/rate-limiting-abuse-prevention/SKILL.md) | Sliding-window IP bans + CAPTCHA on public endpoints |
 | [configuration-feature-flags](.agents/skills/configuration-feature-flags/SKILL.md) | Two-tier (install + per-tenant) settings & toggles |
