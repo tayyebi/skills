@@ -76,6 +76,7 @@ Language-independent principles — apply the *idea*, translate the pseudocode i
 | [rtl-bidi-layout](.agents/skills/rtl-bidi-layout/SKILL.md) | Logical CSS properties, icon mirroring, bidi text handling |
 | [z-index-layer-governance](.agents/skills/z-index-layer-governance/SKILL.md) | Named layer scale as tokens, stacking-context traps, auditing ad-hoc z-index |
 | [user-journey-engineering](.agents/skills/user-journey-engineering/SKILL.md) | Goal-driven flow design: actor/goal mapping, friction analysis, journey anti-patterns |
+| [living-architecture-diagram](.agents/skills/living-architecture-diagram/SKILL.md) | Generated, zoomable system map from a data file — data/layout/render split, viewer, anti-rot discipline |
 
 ### Application & SaaS building blocks
 
