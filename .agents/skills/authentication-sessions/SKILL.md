@@ -32,6 +32,10 @@ Model each method as a provider that ultimately resolves to (or creates) a user 
 - **Chat-app login (Telegram widget, etc.)** — verify the signed payload from the provider before trusting it.
 - **SMS one-time code** — short-lived numeric code, rate-limited, single-use.
 
+For OIDC providers specifically — Keycloak, Entra, Cloudflare Access — see
+`sso-oidc-federation`, which covers discovery/PKCE, linking one user to several
+identities, group→role mapping, and the break-glass account an IdP outage demands.
+
 ### Self-hiding providers
 
 Each provider reads its own config (client id/secret, API keys) from settings. If unconfigured, the provider **hides itself** from the login UI rather than erroring. This lets you ship every method but only surface the ones an operator has actually set up. Expose an endpoint that returns the list of *enabled* providers and render the login page from that.
