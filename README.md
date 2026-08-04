@@ -102,6 +102,7 @@ Language-independent principles — apply the *idea*, translate the pseudocode i
 | [internationalization](.agents/skills/internationalization/SKILL.md) | i18n/l10n, RTL, locale-aware digits |
 | [backup-restore](.agents/skills/backup-restore/SKILL.md) | Scheduled backups with offsite copies + restore |
 | [admin-database-console](.agents/skills/admin-database-console/SKILL.md) | In-app DB GUI for operators: browse, SQL console, size/bloat/index profiling, cache & retention observability |
+| [admin-performance-console](.agents/skills/admin-performance-console/SKILL.md) | In-app timings page: in-memory percentile store, global HTTP/SQL instrumentation, N+1 attribution, and an advisory layer with actions |
 | [share-links-tracking](.agents/skills/share-links-tracking/SKILL.md) | Expiring signed share links + open tracking |
 | [social-preview-cards](.agents/skills/social-preview-cards/SKILL.md) | Generated per-page OG/Twitter cards, content-addressed so they never go stale |
 
