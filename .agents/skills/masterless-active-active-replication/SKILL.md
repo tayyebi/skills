@@ -56,6 +56,7 @@ ON CONFLICT (id) DO UPDATE SET ...
 - **Coerce types at one choke point.** JSON transport loses types (dates become strings). Derive the date/timestamp columns from the table schema and coerce centrally, so a newly-added timestamp column can't silently dead-letter every entry for that table.
 - **GC the log.** Sweep entries older than a retention window (e.g. 30 days) **and** below the minimum cursor every live peer has acknowledged, so you never delete an entry a lagging peer still needs.
 - **Catch-up barrier on boot** (optional): pull from all peers once before serving, so a freshly booted node isn't wildly stale.
+- **The log alone cannot heal every replica.** It is swept, it never covered pre-trigger rows, and applied remote entries aren't re-logged — so a node joining after the log horizon converges to a *silently partial* dataset. Pair this with a row-state snapshot channel: see `replication-snapshot-bootstrap`.
 
 ## Pitfalls
 

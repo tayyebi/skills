@@ -116,6 +116,7 @@ Patterns for running the same app on N ≥ 3 writable nodes that converge withou
 |-------|----------------|
 | [hybrid-logical-clocks](.agents/skills/hybrid-logical-clocks/SKILL.md) | Comparable, causal version stamps across drifting clocks (HLC) |
 | [masterless-active-active-replication](.agents/skills/masterless-active-active-replication/SKILL.md) | N writable nodes converging via a gossiped LWW mutation log |
+| [replication-snapshot-bootstrap](.agents/skills/replication-snapshot-bootstrap/SKILL.md) | Row-state transfer for replicas the incremental log can't heal — paged snapshots through the same apply pipeline |
 | [change-data-capture-triggers](.agents/skills/change-data-capture-triggers/SKILL.md) | DB triggers that log every write (replication / outbox / audit) |
 | [cluster-membership-gossip](.agents/skills/cluster-membership-gossip/SKILL.md) | Seed bootstrap, peer health, join/leave, shared-secret peer auth |
 | [leader-election-via-shared-config](.agents/skills/leader-election-via-shared-config/SKILL.md) | One-of-N singleton work via a replicated config value, no consensus |
