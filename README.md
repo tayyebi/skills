@@ -62,6 +62,7 @@ Language-independent principles — apply the *idea*, translate the pseudocode i
 | [object-oriented-design-principles](.agents/skills/object-oriented-design-principles/SKILL.md) | Encapsulation, composition over inheritance, coupling/cohesion |
 | [design-patterns-catalog](.agents/skills/design-patterns-catalog/SKILL.md) | GoF-style patterns + when a pattern is over-engineering |
 | [clean-architecture-layering](.agents/skills/clean-architecture-layering/SKILL.md) | Dependency rule, domain/application/adapter layers, ports |
+| [plugin-architecture-microkernel](.agents/skills/plugin-architecture-microkernel/SKILL.md) | Kernel + plugins split: contract-as-code, hook gating, disabled-state semantics, UI registries, caller-first migration |
 | [static-typing-discipline](.agents/skills/static-typing-discipline/SKILL.md) | Strict typing, static analysis in CI, null-safety, immutability |
 | [database-schema-design](.agents/skills/database-schema-design/SKILL.md) | Keys, naming, migrations, indexing, N+1 avoidance |
 | [actor-attribution](.agents/skills/actor-attribution/SKILL.md) | created_by/updated_by (actor_id) columns, system-actor handling |
