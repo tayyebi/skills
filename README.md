@@ -73,7 +73,7 @@ Language-independent principles — apply the *idea*, translate the pseudocode i
 | [secure-coding-practices](.agents/skills/secure-coding-practices/SKILL.md) | Build-time OWASP-adjacent prevention: injection, XSS, secrets, deserialization |
 | [git-workflow-conventions](.agents/skills/git-workflow-conventions/SKILL.md) | Commit conventions, branch naming, PR discipline, rebase vs. merge |
 | [ci-cd-pipeline-discipline](.agents/skills/ci-cd-pipeline-discipline/SKILL.md) | Staged gates, required checks, what makes a pipeline trustworthy |
-| [responsive-mobile-first-design](.agents/skills/responsive-mobile-first-design/SKILL.md) | Mobile-first CSS authoring, breakpoints, touch targets |
+| [responsive-mobile-first-design](.agents/skills/responsive-mobile-first-design/SKILL.md) | Mobile-first CSS authoring, breakpoints, per-size-class behaviour, touch targets |
 | [rtl-bidi-layout](.agents/skills/rtl-bidi-layout/SKILL.md) | Logical CSS properties, icon mirroring, bidi text handling |
 | [z-index-layer-governance](.agents/skills/z-index-layer-governance/SKILL.md) | Named layer scale as tokens, stacking-context traps, auditing ad-hoc z-index |
 | [user-journey-engineering](.agents/skills/user-journey-engineering/SKILL.md) | Goal-driven flow design: actor/goal mapping, friction analysis, journey anti-patterns |
