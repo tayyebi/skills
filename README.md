@@ -99,7 +99,7 @@ Language-independent principles — apply the *idea*, translate the pseudocode i
 | [versioned-http-api](.agents/skills/versioned-http-api/SKILL.md) | Versioned REST surface + OpenAPI/Swagger |
 | [background-jobs-scheduling](.agents/skills/background-jobs-scheduling/SKILL.md) | Cron, async job queue, trigger→action automation |
 | [content-addressed-file-storage](.agents/skills/content-addressed-file-storage/SKILL.md) | Blob store with SHA-256 dedup + ref-counting |
-| [outbound-webhooks](.agents/skills/outbound-webhooks/SKILL.md) | HMAC-signed event delivery with retries & log |
+| [outbound-webhooks](.agents/skills/outbound-webhooks/SKILL.md) | HMAC-signed event delivery with retries & log, event-catalog design, feedback-loop and dead-receiver guards |
 | [data-import-export](.agents/skills/data-import-export/SKILL.md) | CSV/tabular import & export |
 | [mock-data](.agents/skills/mock-data/SKILL.md) | Seeding realistic fake data that mirrors the production schema |
 | [search-filtering-pagination](.agents/skills/search-filtering-pagination/SKILL.md) | Trigram search, filtering, stable pagination |
