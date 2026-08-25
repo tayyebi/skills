@@ -88,6 +88,7 @@ Language-independent principles — apply the *idea*, translate the pseudocode i
 | [oidc-provider](.agents/skills/oidc-provider/SKILL.md) | Being the OP: client registration, authorize/token/userinfo, opaque rotating tokens, withdrawable consent, tenant claims |
 | [authorization-rbac](.agents/skills/authorization-rbac/SKILL.md) | Roles + fine-grained permission catalog |
 | [api-tokens](.agents/skills/api-tokens/SKILL.md) | Hashed bearer tokens for machine access |
+| [mcp-server-design](.agents/skills/mcp-server-design/SKILL.md) | MCP tool access for AI assistants: owner-acting tokens, layered guards, owner-readable call log, and a guard-exempt "wish" feedback tool |
 | [multi-tenancy-rls](.agents/skills/multi-tenancy-rls/SKILL.md) | Tenant isolation via Postgres Row-Level Security |
 | [multi-channel-notifications](.agents/skills/multi-channel-notifications/SKILL.md) | One dispatch → in-app + email + SMS + chat, with preferences |
 | [interactive-email](.agents/skills/interactive-email/SKILL.md) | Actionable email: ICS invites, Gmail JSON-LD cards, signed action links, RFC 8058 unsubscribe |
