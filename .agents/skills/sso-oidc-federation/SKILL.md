@@ -9,6 +9,8 @@ Let people sign in with the organisation's identity provider **without** giving 
 
 Extends `authentication-sessions` (which covers the session itself and the self-hiding-provider idea) with the federation half: verifying an external assertion, deciding which local account it belongs to, and deriving authorization from it.
 
+The mirror direction — your app *issuing* identity to third-party applications — is `oidc-provider`.
+
 ## When to use
 
 - More than one organisation, or one organisation with an existing IdP, needs into your app.

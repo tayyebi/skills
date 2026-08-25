@@ -85,6 +85,7 @@ Language-independent principles — apply the *idea*, translate the pseudocode i
 |-------|----------------|
 | [authentication-sessions](.agents/skills/authentication-sessions/SKILL.md) | Signed-cookie sessions, SSO providers, 2FA |
 | [sso-oidc-federation](.agents/skills/sso-oidc-federation/SKILL.md) | OIDC sign-in (Keycloak, Entra, Cloudflare Access) alongside local accounts, group→role mapping, break-glass |
+| [oidc-provider](.agents/skills/oidc-provider/SKILL.md) | Being the OP: client registration, authorize/token/userinfo, opaque rotating tokens, withdrawable consent, tenant claims |
 | [authorization-rbac](.agents/skills/authorization-rbac/SKILL.md) | Roles + fine-grained permission catalog |
 | [api-tokens](.agents/skills/api-tokens/SKILL.md) | Hashed bearer tokens for machine access |
 | [multi-tenancy-rls](.agents/skills/multi-tenancy-rls/SKILL.md) | Tenant isolation via Postgres Row-Level Security |
