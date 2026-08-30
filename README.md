@@ -75,6 +75,7 @@ Language-independent principles — apply the *idea*, translate the pseudocode i
 | [ci-cd-pipeline-discipline](.agents/skills/ci-cd-pipeline-discipline/SKILL.md) | Staged gates, required checks, what makes a pipeline trustworthy |
 | [responsive-mobile-first-design](.agents/skills/responsive-mobile-first-design/SKILL.md) | Mobile-first CSS authoring, breakpoints, per-size-class behaviour, touch targets |
 | [rtl-bidi-layout](.agents/skills/rtl-bidi-layout/SKILL.md) | Logical CSS properties, icon mirroring, bidi text handling |
+| [keyboard-shortcuts-layouts](.agents/skills/keyboard-shortcuts-layouts/SKILL.md) | Layout-proof shortcuts: e.key vs e.code matching, non-Latin layout fallback, IME/editable guards, per-platform labels |
 | [z-index-layer-governance](.agents/skills/z-index-layer-governance/SKILL.md) | Named layer scale as tokens, stacking-context traps, auditing ad-hoc z-index |
 | [user-journey-engineering](.agents/skills/user-journey-engineering/SKILL.md) | Goal-driven flow design: actor/goal mapping, friction analysis, journey anti-patterns |
 | [living-architecture-diagram](.agents/skills/living-architecture-diagram/SKILL.md) | Generated, zoomable system map from a data file — data/layout/render split, viewer, anti-rot discipline |
