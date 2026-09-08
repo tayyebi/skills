@@ -93,6 +93,7 @@ Language-independent principles — apply the *idea*, translate the pseudocode i
 | [multi-tenancy-rls](.agents/skills/multi-tenancy-rls/SKILL.md) | Tenant isolation via Postgres Row-Level Security |
 | [multi-channel-notifications](.agents/skills/multi-channel-notifications/SKILL.md) | One dispatch → in-app + email + SMS + chat, with preferences |
 | [interactive-email](.agents/skills/interactive-email/SKILL.md) | Actionable email: ICS invites, Gmail JSON-LD cards, signed action links, RFC 8058 unsubscribe |
+| [mail-client-sync](.agents/skills/mail-client-sync/SKILL.md) | Mirroring a remote mailbox (IMAP) locally: mirror + write-back op queue, leased budgeted sync runs, folder fairness, the UID-renumber trap, honest staleness |
 | [spf-record-validation](.agents/skills/spf-record-validation/SKILL.md) | Resolving SPF the way a receiver does: the ten-lookup ceiling, void lookups, flattening, and why it needs monitoring rather than one-time validation |
 | [routing-filters](.agents/skills/routing-filters/SKILL.md) | User-defined rules routing items to destinations: priority/ignore/stop/catch-all, plus overlap detection proved by witness, a simulator on the live path, and a matrix |
 | [structured-logging-audit](.agents/skills/structured-logging-audit/SKILL.md) | Structured logs + who-did-what audit trail |
