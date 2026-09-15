@@ -34,6 +34,16 @@ Every time you write or review code. This is baseline discipline, not a special-
 - Don't comment out dead code "just in case." Version control already has the history; delete it.
 - A `TODO` without an issue/ticket reference is a comment that will outlive everyone's memory of what it meant. Link it or remove it.
 
+### One-time code
+
+Code that only needs to run once — a startup repair for a past bug's leftovers, a data backfill, a cleanup step — tends to stay forever, running every boot as dead code nobody dares delete.
+
+- **Confirm before writing it.** Tell the person it is one-time, where and when it runs, and how it will be removed. They may prefer a migration, a manual step through the normal pipeline, or keeping it (e.g. a backup restore could bring the old state back).
+- **Mark every piece with a removal `TODO`** — the module, its call site, its test, its script entry — stating the condition, not just the intent:
+  `// TODO(remove): one-time repair for <bug>; delete once the <date> deploy logs "<line>"`.
+- **Make it prove it ran.** Log a persisted summary line (what it changed, what it skipped) so "did it work?" is answered by the production logs, not by guessing.
+- **Remove it in the next change after it ran**, as its own commit, once the log confirms success.
+
 ```
 // weak: restates the code
 // check if user is admin and can edit
