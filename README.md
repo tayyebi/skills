@@ -78,6 +78,7 @@ Language-independent principles — apply the *idea*, translate the pseudocode i
 | [keyboard-shortcuts-layouts](.agents/skills/keyboard-shortcuts-layouts/SKILL.md) | Layout-proof shortcuts: e.key vs e.code matching, non-Latin layout fallback, IME/editable guards, per-platform labels |
 | [z-index-layer-governance](.agents/skills/z-index-layer-governance/SKILL.md) | Named layer scale as tokens, stacking-context traps, auditing ad-hoc z-index |
 | [user-journey-engineering](.agents/skills/user-journey-engineering/SKILL.md) | Goal-driven flow design: actor/goal mapping, friction analysis, journey anti-patterns |
+| [dense-workspace-design](.agents/skills/dense-workspace-design/SKILL.md) | Compact, connected workspaces for thousands of records: UI density, task-based UX, bounded backend APIs, safe edits, and bulk operations |
 | [living-architecture-diagram](.agents/skills/living-architecture-diagram/SKILL.md) | Generated, zoomable system map from a data file — data/layout/render split, viewer, anti-rot discipline |
 
 ### Application & SaaS building blocks
